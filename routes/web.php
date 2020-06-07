@@ -6,14 +6,18 @@ Route::get('/', function () {
     return 'Home';
 });
 
-Route::get('usuarios', function () {
+Route::get('/usuarios', function () {
     return 'Usuarios';
 });
 
-Route::get('usuarios/nuevo', function () {
+Route::get('/usuarios/nuevo', function () {
     return 'Crear nuevo usuario';
 });
 
-Route::get('usuarios/{id}', function ($id) {
+Route::get('/usuarios/{id}', function ($id) {
    return "Mostrando detalles del usuario {$id}";
+});
+
+Route::get('/usuarios/{id}/edit', function ($id) {
+   return "Editando usuario {$id}";
 });
