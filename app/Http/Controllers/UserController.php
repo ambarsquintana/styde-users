@@ -26,16 +26,24 @@ class UserController extends Controller
 
     public function create()
     {
-        return 'Crear nuevo usuario';
+        return view('user-create', [
+            'title' => 'Crear usuarios'
+        ]);
     }
 
     public function show($id)
     {
-        return "Mostrando detalles del usuario {$id}";
+        return view('user-show', [
+            'id' => $id,
+            'title' => 'Mostrar usuarios'
+        ]);
     }
 
     public function edit($id)
     {
-        return "Editando usuario {$id}";
+        return view('user-edit', [
+            'id' => $id,
+            'title' => 'Editar usuarios'
+        ]);
     }
 }
