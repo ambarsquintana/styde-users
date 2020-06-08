@@ -9,11 +9,22 @@ use Tests\TestCase;
 class UserModuleTest extends TestCase
 {
     /** @test */
-    function it_loads_the_users_list_page()
+    function it_show_the_users_list()
     {
         $this->get('/usuarios')
             ->assertStatus(200)
-            ->assertSee('Listado de usuarios');
+            ->assertSee('Listado de usuarios')
+            ->assertSee('Pedro')
+            ->assertSee('Jose');
+    }
+
+    /** @test */
+    function it_shows_a_default_message_if_the_users_list_is_empty()
+    {
+        $this->get('/usuarios?empty')
+            ->assertStatus(200)
+            ->assertSee('Listado de usuarios')
+            ->assertSee('No hay usuarios registrados.');
     }
 
     /** @test */
