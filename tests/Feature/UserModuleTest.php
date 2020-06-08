@@ -46,7 +46,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_loads_the_edit_users_page()
     {
-        $this->get('/usuarios/5/edit')
+        $this->get('/usuarios/5/editar')
             ->assertStatus(200)
             ->assertSee('Editando usuario 5');
     }

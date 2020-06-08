@@ -12,4 +12,4 @@ Route::get('/usuarios/nuevo', 'UserController@create');
 
 Route::get('/usuarios/{id}', 'UserController@show');
 
-Route::get('/usuarios/{id}/edit', 'UserController@edit');
+Route::get('/usuarios/{id}/editar', 'UserController@edit');
