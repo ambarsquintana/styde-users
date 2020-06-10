@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProfessionToUsers extends Migration
+class AddProfessionIdToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddProfessionToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profession', 50)->nullable()->after('password');
+            $table->foreignId('profession_id')->after('id');
+            $table->foreign('profession_id')->references('id')->on('professions');
         });
     }
 
@@ -26,7 +27,8 @@ class AddProfessionToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('profession');
+            $table->dropForeign(['profession_id']);
+            $table->dropColumn('profession_id');
         });
     }
 }
