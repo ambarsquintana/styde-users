@@ -1,5 +1,6 @@
 <?php
 
+use App\Profession;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,15 +13,15 @@ class ProfessionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('professions')->insert([
+        Profession::create([
            'title' => 'Back-end developer'
         ]);
 
-        DB::table('professions')->insert([
+        Profession::create([
             'title' => 'Front-end developer'
         ]);
 
-        DB::table('professions')->insert([
+        Profession::create([
             'title' => 'Web developer'
         ]);
     }
