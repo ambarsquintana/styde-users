@@ -46,4 +46,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
     ];
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+
+    public function profession()
+    {
+        return $this->belongsTo(Profession::class);
+    }
 }
