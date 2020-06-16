@@ -3,7 +3,6 @@
 use App\User;
 use App\Profession;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -24,18 +23,10 @@ class UserSeeder extends Seeder
             'is_admin' => true
         ]);
 
-        User::create([
-            'name' => 'Ruby',
-            'email' => 'ruby@gmail.com',
-            'password' => bcrypt('123'),
+        factory(User::class)->create([
             'profession_id' => $professionId
         ]);
 
-        User::create([
-            'name' => 'Esmeralda',
-            'email' => 'esmeralda@gmail.com',
-            'password' => bcrypt('123'),
-            'profession_id' => null
-        ]);
+        factory(User::class, 48)->create();
     }
 }
