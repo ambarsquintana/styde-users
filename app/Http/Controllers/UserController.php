@@ -12,22 +12,23 @@ class UserController extends Controller
 
         return view('users.index', [
             'users' => $users,
-            'title' => 'Listado de usuarios'
+            'title' => 'Listado de usuarios',
         ]);
     }
 
     public function create()
     {
         return view('users.create', [
-            'title' => 'Crear usuarios'
+            'title' => 'Crear usuarios',
         ]);
     }
 
     public function show($id)
     {
+        $user = User::find($id);
+
         return view('users.show', [
-            'id' => $id,
-            'title' => 'Mostrar usuarios'
+            'user' => $user,
         ]);
     }
 
@@ -35,7 +36,7 @@ class UserController extends Controller
     {
         return view('users.edit', [
             'id' => $id,
-            'title' => 'Editar usuarios'
+            'title' => 'Editar usuarios',
         ]);
     }
 }
