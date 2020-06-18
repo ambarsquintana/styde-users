@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+                    <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                 </li>
             </ul>
         </div>
