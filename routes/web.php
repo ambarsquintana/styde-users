@@ -12,6 +12,9 @@ Route::get('/usuarios', 'UserController@index')
 Route::get('/usuarios/nuevo', 'UserController@create')
     ->name('users.create');
 
+Route::post('/usuarios', 'UserController@store')
+    ->name('users.store');
+
 Route::get('/usuarios/{id}', 'UserController@show')
     ->name('users.show');
 

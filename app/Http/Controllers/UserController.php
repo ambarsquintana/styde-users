@@ -23,6 +23,11 @@ class UserController extends Controller
         ]);
     }
 
+    public function store()
+    {
+        return "Procesando información...";
+    }
+
     public function show($id)
     {
         $user = User::findOrFail($id);
