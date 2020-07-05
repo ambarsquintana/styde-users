@@ -55,7 +55,7 @@ class UserModuleTest extends TestCase
     {
         $this->get('/usuarios/nuevo')
             ->assertStatus(200)
-            ->assertSee('Crear nuevo usuario');
+            ->assertSee('Crear usuarios');
     }
 
     /** @test */
@@ -72,5 +72,21 @@ class UserModuleTest extends TestCase
         $this->get('/usuarios/999')
             ->assertStatus(404)
             ->assertSee('Página no encontrada');
+    }
+
+    /** @test */
+    function it_creates_a_new_user()
+    {
+        $this->post('/usuarios', [
+            'name' => 'Ambar Quintana',
+            'email' => 'ambarsquintana@gmail.com',
+            'password' => '123456'
+        ])->assertRedirect(route('users.index'));
+
+        $this->assertCredentials([
+            'name' => 'Ambar Quintana',
+            'email' => 'ambarsquintana@gmail.com',
+            'password' => '123456'
+        ]);
     }
 }
