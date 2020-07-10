@@ -79,14 +79,31 @@ class UserModuleTest extends TestCase
     {
         $this->post('/usuarios', [
             'name' => 'Ambar Quintana',
-            'email' => 'ambarsquintana@gmail.com',
+            'email' => 'ambarsquintana@example.com',
             'password' => '123456'
         ])->assertRedirect(route('users.index'));
 
         $this->assertCredentials([
             'name' => 'Ambar Quintana',
-            'email' => 'ambarsquintana@gmail.com',
+            'email' => 'ambarsquintana@example.com',
             'password' => '123456'
+        ]);
+    }
+
+    /** @test */
+    function the_name_is_required()
+    {
+        $this->from('usuarios/crear')
+            ->post('/usuarios', [
+                'name' => '',
+                'email' => 'ambarsquintana@example.com',
+                'password' => '123456',
+            ])
+            ->assertRedirect('usuarios/crear')
+            ->assertSessionHasErrors(['name' => 'El nombre es obligatorio']);
+
+        $this->assertDatabaseMissing('users', [
+            'email' => 'ambarsquintana@example.com',
         ]);
     }
 }
