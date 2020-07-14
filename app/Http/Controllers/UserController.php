@@ -30,7 +30,9 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ], [
-            'name.required' => 'El nombre es obligatorio'
+            'name.required' => 'El nombre es obligatorio',
+            'email.required' => 'El correo electrónico es obligatorio',
+            'password.required' => 'La contraseña es obligatoria'
         ]);
 
         User::create([
