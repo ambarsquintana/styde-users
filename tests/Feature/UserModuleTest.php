@@ -15,18 +15,18 @@ class UserModuleTest extends TestCase
     function it_show_the_users_list()
     {
         factory(User::class)->create([
-            'name' => 'Pedro'
+            'name' => 'Jane'
         ]);
 
         factory(User::class)->create([
-            'name' => 'Jose'
+            'name' => 'Ryan'
         ]);
 
         $this->get('/usuarios')
             ->assertStatus(200)
             ->assertSee('Listado de usuarios')
-            ->assertSee('Pedro')
-            ->assertSee('Jose');
+            ->assertSee('Jane')
+            ->assertSee('Ryan');
     }
 
     /** @test */
@@ -42,12 +42,12 @@ class UserModuleTest extends TestCase
     function it_displays_the_users_details()
     {
         $user = factory(User::class)->create([
-            'name' => 'Ambar Quintana'
+            'name' => 'Ryan Gold'
         ]);
 
         $this->get('/usuarios/'.$user->id)
             ->assertStatus(200)
-            ->assertSee('Ambar Quintana');
+            ->assertSee('Ryan Gold');
     }
 
     /** @test */
@@ -78,14 +78,14 @@ class UserModuleTest extends TestCase
     function it_creates_a_new_user()
     {
         $this->post('/usuarios', [
-            'name' => 'Ambar Quintana',
-            'email' => 'ambarsquintana@example.com',
+            'name' => 'Ryan Gold',
+            'email' => 'ryan@example.com',
             'password' => '123456'
         ])->assertRedirect(route('users.index'));
 
         $this->assertCredentials([
-            'name' => 'Ambar Quintana',
-            'email' => 'ambarsquintana@example.com',
+            'name' => 'Ryan Gold',
+            'email' => 'ryan@example.com',
             'password' => '123456'
         ]);
     }
@@ -96,14 +96,14 @@ class UserModuleTest extends TestCase
         $this->from('usuarios/crear')
             ->post('/usuarios', [
                 'name' => '',
-                'email' => 'ambarsquintana@example.com',
+                'email' => 'ryan@example.com',
                 'password' => '123456',
             ])
             ->assertRedirect('usuarios/crear')
             ->assertSessionHasErrors(['name' => 'El nombre es obligatorio']);
 
         $this->assertDatabaseMissing('users', [
-            'email' => 'ambarsquintana@example.com',
+            'email' => 'ryan@example.com',
         ]);
     }
 }
