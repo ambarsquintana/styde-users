@@ -3,7 +3,7 @@
 @section('title', 'Crear Usuario')
 
 @section('content')
-    <h1 class="mt-5">{{ $title }}</h1>
+    <h1 class="mt-5">Crear usuarios</h1>
     <hr>
 
     <form method="POST" action="{{ route('users.store') }}">
