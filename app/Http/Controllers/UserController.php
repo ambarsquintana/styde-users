@@ -27,12 +27,14 @@ class UserController extends Controller
     {
         $data = request()->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
         ], [
             'name.required' => 'El nombre es obligatorio',
             'email.required' => 'El correo electrónico es obligatorio',
-            'password.required' => 'La contraseña es obligatoria'
+            'email.email' => 'El correo electrónico no es válido',
+            'email.unique' => 'El correo electrónico ya existe',
+            'password.required' => 'La contraseña es obligatoria',
         ]);
 
         User::create([
