@@ -79,13 +79,13 @@ class UserModuleTest extends TestCase
         $this->post('usuarios', [
             'name' => 'Ryan Gold',
             'email' => 'ryan@example.com',
-            'password' => '123456'
+            'password' => '1234567'
         ])->assertRedirect(route('users.index'));
 
         $this->assertCredentials([
             'name' => 'Ryan Gold',
             'email' => 'ryan@example.com',
-            'password' => '123456'
+            'password' => '1234567'
         ]);
     }
 
@@ -96,7 +96,7 @@ class UserModuleTest extends TestCase
             ->post('usuarios', [
                 'name' => '',
                 'email' => 'ryan@example.com',
-                'password' => '123456',
+                'password' => '1234567',
             ])
             ->assertRedirect('usuarios/crear')
             ->assertSessionHasErrors(['name']);
@@ -113,7 +113,7 @@ class UserModuleTest extends TestCase
             ->post('usuarios', [
                 'name' => 'Ryan Gold',
                 'email' => '',
-                'password' => '123456',
+                'password' => '1234567',
             ])
             ->assertRedirect('usuarios/crear')
             ->assertSessionHasErrors(['email']);
@@ -128,7 +128,7 @@ class UserModuleTest extends TestCase
             ->post('usuarios', [
                 'name' => 'Ryan Gold',
                 'email' => 'invalid-email',
-                'password' => '123456'
+                'password' => '1234567'
             ])
             ->assertRedirect('usuarios/crear')
             ->assertSessionHasErrors(['email']);
@@ -147,7 +147,7 @@ class UserModuleTest extends TestCase
             ->post('usuarios', [
                 'name' => 'Ryan Gold',
                 'email' => 'ryan@example.com',
-                'password' => '123456',
+                'password' => '1234567',
             ])
             ->assertRedirect('usuarios/crear')
             ->assertSessionHasErrors(['email']);
@@ -163,6 +163,21 @@ class UserModuleTest extends TestCase
                 'name' => 'Ryan Gold',
                 'email' => 'ryan@example.com',
                 'password' => ''
+            ])
+            ->assertRedirect('usuarios/crear')
+            ->assertSessionHasErrors(['password']);
+
+        $this->assertEquals(0, User::count());
+    }
+
+    /** @test */
+    function the_password_must_be_longer_than_six_characters()
+    {
+        $this->from('usuarios/crear')
+            ->post('usuarios', [
+                'name' => 'Ryan Gold',
+                'email' => 'ryan@example.com',
+                'password' => '123456'
             ])
             ->assertRedirect('usuarios/crear')
             ->assertSessionHasErrors(['password']);
