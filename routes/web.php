@@ -18,5 +18,5 @@ Route::post('usuarios', 'UserController@store')
 Route::get('usuarios/{id}', 'UserController@show')
     ->name('users.show');
 
-Route::get('usuarios/{id}/editar', 'UserController@edit')
+Route::get('usuarios/{user}/editar', 'UserController@edit')
     ->name('users.edit');
