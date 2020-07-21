@@ -60,9 +60,11 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_loads_the_edit_users_page()
     {
-        $this->get('usuarios/5/editar')
+        $user = factory(User::class)->create();
+
+        $this->get("usuarios/{$user->id}/editar")
             ->assertStatus(200)
-            ->assertSee('Editando usuario 5');
+            ->assertSee('Editar usuarios');
     }
 
     /** @test */
@@ -197,5 +199,26 @@ class UserModuleTest extends TestCase
             ->assertViewIs('users.edit')
             ->assertSee('Editar usuarios')
             ->assertViewHas('user', $user);
+    }
+
+    /** @test */
+    function it_updates_a_user()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+
+        $this->put("usuarios/{$user->id}", [
+            'name' => 'Ryan Gold',
+            'email' => 'ryan@example.com',
+            'password' => '1234567',
+        ])
+        ->assertRedirect("usuarios/{$user->id}");
+
+        $this->assertCredentials([
+            'name' => 'Ryan Gold',
+            'email' => 'ryan@example.com',
+            'password' => '1234567'
+        ]);
     }
 }
