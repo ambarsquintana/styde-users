@@ -6,7 +6,8 @@
     <h1 class="mt-5">Editar usuarios</h1>
     <hr>
 
-    <form method="POST" action="">
+    <form method="POST" action="{{ url("usuarios/{$user->id}") }}">
+        @method('PUT')
         @csrf
 
         <label for="name">Nombre:</label>
