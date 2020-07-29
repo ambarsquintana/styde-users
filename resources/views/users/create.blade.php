@@ -9,31 +9,31 @@
     <form method="POST" action="{{ route('users.store') }}">
         @csrf
 
-        <label for="name">Nombre:</label>
-        <input type="text" name="name" id="name" placeholder="John Dae" value="{{ old('name') }}">
-        @error('name')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-        <br>
+        <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" id="name" placeholder="John Dae" value="{{ old('name') }}" class="form-control">
+            @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
 
-        <label for="email">Correo:</label>
-        <input type="email" name="email" id="email" placeholder="johndae@example.com" value="{{ old('email') }}">
-        @error('email')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-        <br>
+        <div class="form-group">
+            <label for="email">Correo:</label>
+            <input type="email" name="email" id="email" placeholder="johndae@example.com" value="{{ old('email') }}" class="form-control">
+            @error('email')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
 
-        <label for="password">Contraseña:</label>
-        <input type="password" name="password" id="password" placeholder="********">
-        @error('password')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-        <br>
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" id="password" placeholder="********" class="form-control">
+            @error('password')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
 
-        <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+        <a href="{{ route('users.index') }}"" class="btn btn-link">Regresar</a>
     </form>
-
-    <p>
-        <a href="{{ route('users.index') }}">Regresar</a>
-    </p>
 @endsection
