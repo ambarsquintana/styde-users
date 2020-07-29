@@ -25,4 +25,4 @@ Route::put('usuarios/{user}', 'UserController@update')
     ->name('users.update');
 
 Route::delete('usuarios/{user}', 'UserController@destroy')
-    ->name('users.delete');
+    ->name('users.destroy');
