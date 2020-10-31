@@ -13,11 +13,11 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_show_the_users_list()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'name' => 'Jane Evans',
         ]);
 
-        factory(User::class)->create([
+        User::factory()->create([
             'name' => 'Ryan Gold',
         ]);
 
@@ -40,7 +40,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_displays_the_users_details()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Ryan Gold',
         ]);
 
@@ -61,7 +61,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_loads_the_edit_users_page()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->get("usuarios/{$user->id}/editar")
             ->assertStatus(200)
@@ -142,7 +142,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_email_must_be_unique()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'ryan@example.com',
         ]);
 
@@ -191,7 +191,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_updates_a_user()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->put("usuarios/{$user->id}", [
             'name' => 'Ryan Gold',
@@ -210,7 +210,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_name_is_required_when_updating_the_user()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->from("usuarios/{$user->id}/editar")
             ->put("usuarios/{$user->id}", [
@@ -227,7 +227,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_email_is_required_when_updating_the_user()
     {
-       $user = factory(User::class)->create();
+       $user = User::factory()->create();
 
        $this->from("usuarios/{$user->id}/editar")
             ->put("usuarios/{$user->id}", [
@@ -244,7 +244,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_email_must_be_valid_when_updating_the_user()
     {
-       $user = factory(User::class)->create();
+       $user = User::factory()->create();
 
        $this->from("usuarios/{$user->id}/editar")
             ->put("usuarios/{$user->id}", [
@@ -261,11 +261,11 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_email_must_be_unique_when_updating_the_user()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'jane@example.com',
         ]);
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'email' => 'ryan@example.com',
         ]);
 
@@ -286,7 +286,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_users_email_can_stay_the_same_when_updating_the_user()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'email' => 'ryan@example.com',
         ]);
 
@@ -309,7 +309,7 @@ class UserModuleTest extends TestCase
     {
         $oldPassword = 'clave_anterior';
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt($oldPassword),
         ]);
 
@@ -331,7 +331,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_loads_deletes_a_user()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->delete("usuarios/{$user->id}")
             ->assertRedirect('usuarios');
