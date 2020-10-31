@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\User;
 use App\Models\Profession;
 use Illuminate\Database\Seeder;
@@ -7,7 +9,7 @@ use Illuminate\Database\Seeder;
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      *
      * @return void
      */
@@ -23,10 +25,12 @@ class UserSeeder extends Seeder
             'is_admin' => true
         ]);
 
-        factory(User::class)->create([
+        User::factory()->create([
             'profession_id' => $professionId
         ]);
 
-        factory(User::class, 48)->create();
+        User::factory()
+            ->times(48)
+            ->create();
     }
 }
